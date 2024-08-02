@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bad Bank Capstone</title>
+    
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script> -->
+    <script>
+      // Your web app's Firebase configuration
+
+    const firebaseConfig = {
+          apiKey: "AIzaSyD106pWskJU6uPlULxKrZNLQbf28wGHbWA",
+          authDomain: "good-bank1.firebaseapp.com",
+          databaseURL: "https://good-bank1-default-rtdb.firebaseio.com",
+          projectId: "good-bank1",
+          storageBucket: "good-bank1.appspot.com",
+          messagingSenderId: "179298842326",
+          appId: "1:179298842326:web:8842a2366f17078a7fbb77"
+    };
+
+    
+      // Initialize Firebase if not already initialized
+      firebase.initializeApp(firebaseConfig);
+      // Make the auth and firebase references
+      const auth = firebase.auth();
+    </script>
+
+
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- we will put our teact component inside this div -->
+    <div id="root"></div>
+
+      <!-- sweetalert2 Pop up message scripting-->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.all.min.js"></script>
+      
+      <!-- load react -->
+      <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react-router@5.2.1/umd/react-router.min.js" crossorigin></script>
+      <script src="https://unpkg.com/react-router-dom@5.2.1/umd/react-router-dom.min.js" crossorigin></script>
+
+      <!-- load our react component. -->
+      <script src="context.js" defer type="text/babel"></script>
+      <script src="navbar.js" defer type="text/babel"></script>
+      <script src="createaccount.js" defer type="text/babel"></script>
+      <script src="login.js" defer type="text/babel"></script>
+      <script src="deposit.js" defer type="text/babel"></script>
+      <script src="withdraw.js" defer type="text/babel"></script>
+      <!-- <script src="transactions.js" defer type="text/babel"></script> -->
+      <script src="balance.js" defer type="text/babel"></script>
+      <script src="alldata.js" defer type="text/babel"></script>
+      <script src="home.js" defer type="text/babel"></script>
+      <script src="index.js" defer type="text/babel"></script>
+
+ 
+
+  </body>
+</html>

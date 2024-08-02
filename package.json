@@ -1,0 +1,24 @@
+{
+  "name": "littledb",
+  "version": "1.0.0",
+  "description": "lowdb sample for 1.125",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "author": "Brett V. Schaumburg",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "dotenv": "^16.4.5",
+    "express": "^4.16.3",
+    "lowdb": "^1.0.0",
+    "mongodb": "^3.7.4",
+    "nodemon": "^3.1.4"
+  },
+  "engines": {
+    "node": "18.20.2"
+  },
+  "keywords": []
+}
