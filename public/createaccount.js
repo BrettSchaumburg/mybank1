@@ -78,8 +78,10 @@ function CreateAccount() {
         setPassword('');
         setShow(true);
     }
-
-
+    
+    function goLogin(){
+        window.location.href='#/login';
+    }
 
 
     return (
@@ -100,7 +102,7 @@ function CreateAccount() {
                 <input type="input" className="form-control" id="email"
                 placeholder="Enter Email" value={email} onChange={e=>setEmail(e.currentTarget.value)} /><br/>
                 Password<br/>
-                <input type="input" className="form-control" id="password"
+                <input type="password" className="form-control" id="password"
                 placeholder="Enter Password" value={password} onChange={e=>setPassword(e.currentTarget.value)} /><br/>
                 <button type="submit" className="btn btn-light" onClick={handleCreate}>Create Account</button>
                 </>
@@ -108,7 +110,12 @@ function CreateAccount() {
                 <>
                 <h5>Success!</h5>   
                 <i> -Please create another account or go Login</i>
-                <button type="submit" className="btn btn-light" onClick={clearForm}>Create Another Account</button>              
+                <div><button type="submit" className="btn btn-light" onClick={clearForm}>Create Another Account</button> 
+                </div>
+                
+                <div>
+                <button type="submit" className="btn btn-light" onClick={goLogin}>Login</button> 
+                </div>
                 </>
             )}        
         

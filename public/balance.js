@@ -47,23 +47,23 @@ function Balance() {
             }
         });    
         
-        fetch(`/account/changeactivity/${ctx.email}/${getTime()}/${getDate()}/checkbalance/NA/${balance}`)  
-        .then(response => response.text())
-        .then(text => {
-            try {
-                const data = JSON.parse(text);
-                //setStatus(JSON.stringify(data.value));
-                setShow(false);
-                // props.setStatus("You have successfully deposited: $"+amount);
-                console.log('JSON:', data);
-            } catch(err) {
-                // props.setStatus('Deposit failed')
-                console.log('err:', text);
-            }
-        });  
+        // fetch(`/account/changeactivity/${ctx.email}/${getTime()}/${getDate()}/checkbalance/NA/${balance}`)  
+        // .then(response => response.text())
+        // .then(text => {
+        //     try {
+        //         const data = JSON.parse(text);
+        //         //setStatus(JSON.stringify(data.value));
+        //         setShow(false);
+        //         // props.setStatus("You have successfully deposited: $"+amount);
+        //         console.log('JSON:', data);
+        //     } catch(err) {
+        //         // props.setStatus('Deposit failed')
+        //         console.log('err:', text);
+        //     }
+        // });  
         console.log(`this is the balance: ${amount}`);
-        return balance;
-        console.log(`this is the balance: ${amount}`);
+        return balance;  
+        // console.log(`this is the balance: ${amount}`);
         // return currentUser.balance;
         
     }
@@ -88,9 +88,9 @@ function Balance() {
             <>
                 <br/>
                     <div >
-                        <h1>Welcome: {ctx.email}</h1>
+                        <h3>Welcome: {ctx.email}</h3>
                         <br/>
-                        <h1>Balance: ${getBalance()}</h1>
+                        <h5>Balance: ${getBalance()}</h5>
                         
                     </div>
                 <br/>

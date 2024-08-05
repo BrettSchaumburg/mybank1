@@ -3,6 +3,7 @@ function Login() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [msg, setMsg]   = React.useState('No Current User');
+   const [isLogged, setIsLogged] = React.useState(false);
 
     //const UserContext = React.createContext();
 //    const currentUser          = React.useContext(currentUserContext); //same as ctx
@@ -25,7 +26,7 @@ function Login() {
             setShow(false);
           }
         //setMsg(auth.user.email);
-            
+           setIsLogged(true); 
            console.log("Login Page Current User: ");
         //     console.log(userCredential);
         //     currentUser.user = userCredential;
@@ -76,7 +77,11 @@ function Login() {
     }
 
     function updateCurrentUser(name, email, password, loginStatus) {
+
+
+        
         ctx.name = name;
+        console.log("This is the ctx name:"+ctx.name);
         ctx.email = email;
         ctx.password = password;
         ctx.loginStatus = loginStatus; 
@@ -111,14 +116,31 @@ function Login() {
                               userAuth.user.password,
                               true);
             //currentUser.user = userAuth;
-            alert(userAuth.user.email);
-
+            
             //setMsg(currentUser.loginStatus);
             //ctx.email = currentUser.user.email;
             console.log('this is the ctx.email'+ ctx.email);
             setMsg(ctx.email);
             console.log('this is the msg'+ msg);
-
+           
+            fetch(`/account/findOne/${ctx.email}`)
+            .then(response => response.text())
+            .then(text => {
+                try {
+                    const data = JSON.parse(text);
+                 //    setStatus(JSON.stringify(data.value));
+                 //    setShow(false);
+                 //    props.setStatus("You have successfully deposited: $"+amount);
+                    console.log('json get name:', data.name);
+                    ctx.name = data.name;
+                    setMsg();
+                    //setBalance(data.balance);
+ 
+                } catch(err) {
+                    props.setStatus('get user failed')
+                    console.log('err:', text);
+                }
+            });    
             //set the context variable to show other areas to access now that logged in
             //currentUser.loginStatus = true;
 
@@ -129,7 +151,7 @@ function Login() {
             // });
 
             //props.setStatus("Signed in successfully!");
-            alert("Signed in successfully!");
+            //alert("Signed in successfully!");
             setTimeout(() => setShow(false), 1000);
             //setEmail('');
             //setPassword(''); 
@@ -162,7 +184,7 @@ function Login() {
         //     animation: false,
         //     title: 'You have signed out successfully'
         //   });
-          alert('successfully logged out!');
+         // alert('successfully logged out!');
           //.setShow(true);
           setTimeout(() => setShow(true), 4000);  
         
@@ -174,6 +196,7 @@ function Login() {
 
         //currentUser.user = {};
         clearForm();
+        setIsLogged(false);
         updateCurrentUser("", "NO USER LOGGED IN", "", false);
         //ctx.email = "No Current user";
         //ctx.loginStatus = false;
@@ -195,12 +218,12 @@ function Login() {
         fontSizeHeader="3.95"
         headerBgColor="#F65058FF"
         header={<>
-                <h5>Login</h5><br/>
+                <h5>Login</h5><p></p>
                 
                 
-                 User: <i>{ctx.email}</i>
+                 User: <i>{ctx.name}</i>
                 <br/>
-                <button style={{justifyContent: 'center'}}type="submit" className="btn btn-light" onClick={logout}>Logout</button>
+                <button disabled={!isLogged} style={{justifyContent: 'center'}}type="submit" className="btn btn-light" onClick={logout}>Logout</button>
                 </>}
         headerDisplay='flex'
         headerJustifyContent='center'
@@ -221,7 +244,7 @@ function Login() {
             </>
         ):(  //IF SHOW IS FALSE
             <>
-                <h5 style={{textAlign: 'center'}}>Success, {ctx.email} has logged in! </h5>
+                <h5 style={{textAlign: 'center'}}>Success, {ctx.name} has logged in! </h5>
             </>
         )}   
         />        
