@@ -11,8 +11,8 @@ app.use(express.static('public'));
 app.use(cors());
 
 // create user account
-app.get('/account/create/:name/:email/:password/', function (req, res) {
-    dal.create(req.params.name, req.params.email, req.params.password)
+app.get('/account/create/:name/:email/:password/:account/', function (req, res) {
+    dal.create(req.params.name, req.params.email, req.params.password, req.params.account)
     .then((user) => {
         console.log("created new user in the db");
         console.log(user);
@@ -81,6 +81,16 @@ app.get('/account/find/:email', function (req, res) {
 app.get('/account/findOne/:email', function (req, res) {
 
     dal.findOne(req.params.email).
+        then((user) => {
+            console.log(user);
+            res.send(user);
+    });
+});
+
+// find one user by email - alternative to find
+app.get('/account/findAccount/:account', function (req, res) {
+
+    dal.findOne(req.params.account).
         then((user) => {
             console.log(user);
             res.send(user);

@@ -51,8 +51,11 @@ const now = new Date();
     }
 
     function checkInputParams(inputParm){
-
-        if (checkIfLessThanZero(inputParm) && checkIsNumber(inputParm)){
+       if(ctx.balance - inputParm < 0){
+         alert("you do not have enough funds to cover the withdrawal!")     
+         return false;   
+       } 
+       if (checkIfLessThanZero(inputParm) && checkIsNumber(inputParm)){
             console.log("input parms true")                
             return true;
         }
@@ -161,7 +164,15 @@ const now = new Date();
 
     return (
         <Card 
-            header="Withdraw"
+            header={<>
+                <div style={{float: 'left'}}>
+                <h5>Withdraw</h5><p></p>
+                </div>
+                <div style={{float: 'right'}}>
+                 User: <i>{ctx.name}</i>
+                 </div>
+                
+                </>}
             cardWidth='45%'
             bgcolor="info"
             txtcolor="white"

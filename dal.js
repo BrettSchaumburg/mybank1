@@ -12,11 +12,11 @@ MongoClient.connect(process.env.MONGO_URI, {useUnifiedTopology: true}, function(
 });
 
 // create user account
-function create(name, email, password){
+function create(name, email, password, accountNumber){
     console.log("inside create function");
     return new Promise((resolve, reject) => {    
         const collection = db.collection('users');
-        const doc = {name, email, password,balance: 0, activity:[]};
+        const doc = {name, email, password, accountNumber, balance: 0, activity:[]};
         collection.insertOne(doc, {w:1}, function(err, result) {
             err ? reject(err) : resolve(doc);
         });    
@@ -41,6 +41,17 @@ function findOne(email){
         const customers = db
             .collection('users')
             .findOne({email: email})
+            .then((doc) => resolve(doc))
+            .catch((err) => reject(err));    
+    })
+}
+
+// find user account
+function findAccount(account){
+    return new Promise((resolve, reject) => {    
+        const customers = db
+            .collection('users')
+            .find({accountNumber: account })
             .then((doc) => resolve(doc))
             .catch((err) => reject(err));    
     })
@@ -113,4 +124,4 @@ function all(){
 }
 
 
-module.exports = {create, findOne, find, update, updateActivity, all};
+module.exports = {create, findOne, find, findAccount, update, updateActivity, all};

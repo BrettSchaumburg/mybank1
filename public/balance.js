@@ -78,7 +78,15 @@ function Balance() {
 
     return (
         <Card
-            header="Balance" 
+            header={<>
+                <div style={{float: 'left'}}>
+                <h5>Balance</h5><p></p>
+                </div>
+                <div style={{float: 'right'}}>
+                 User: <i>{ctx.name}</i>
+                 </div>
+                
+                </>}
             cardWidth='45%'
             bgcolor="info"
             txtcolor="white"

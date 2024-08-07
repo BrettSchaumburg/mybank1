@@ -50,17 +50,26 @@ function AllData(){
 
     return (<Card 
 
-        header="All Data"
+        header={<>
+            <div style={{float: 'left'}}>
+            <h5>All Data</h5><p></p>
+            </div>
+            <div style={{float: 'right'}}>
+             User: <i>{ctx.name}</i>
+             </div>
+            
+            </>}
              cardWidth='100%'
         bgcolor="info"
         txtcolor="white"
         bodyContainerWidth='800px'
         body={ctx.loginStatus ? (
         <div>
-        <h5>All Data for User:</h5>
+       
         
         
         <h3>User Activity: {ctx.email}</h3>
+        <h5>Account Number: {ctx.account}</h5>
         <table border="1">
             <thead>
                 <tr>
@@ -68,7 +77,7 @@ function AllData(){
                     <td>Date</td>
                     <td>Activity</td>
                     <td>Amount</td>
-                    <td>Balance</td>
+                    <td>Previous Balance</td>
                     
                 </tr>
             </thead>

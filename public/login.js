@@ -76,7 +76,7 @@ function Login() {
         return {};
     }
 
-    function updateCurrentUser(name, email, password, loginStatus) {
+    function updateCurrentUser(name, email, password, loginStatus,) {
 
 
         
@@ -133,6 +133,7 @@ function Login() {
                  //    props.setStatus("You have successfully deposited: $"+amount);
                     console.log('json get name:', data.name);
                     ctx.name = data.name;
+                    ctx.account = data.accountNumber;
                     setMsg();
                     //setBalance(data.balance);
  
@@ -196,11 +197,11 @@ function Login() {
 
         //currentUser.user = {};
         clearForm();
-        setIsLogged(false);
+      
         updateCurrentUser("", "NO USER LOGGED IN", "", false);
-        //ctx.email = "No Current user";
-        //ctx.loginStatus = false;
-
+      ctx.name = "No user logged in!";
+              //ctx.loginStatus = false;
+        setIsLogged(false);
     }
 
     function clearForm() {
@@ -218,12 +219,13 @@ function Login() {
         fontSizeHeader="3.95"
         headerBgColor="#F65058FF"
         header={<>
+                <div style={{float: 'left'}}>
                 <h5>Login</h5><p></p>
-                
-                
+                </div>
+                <div style={{float: 'right'}}>
                  User: <i>{ctx.name}</i>
-                <br/>
-                <button disabled={!isLogged} style={{justifyContent: 'center'}}type="submit" className="btn btn-light" onClick={logout}>Logout</button>
+                 </div>
+                
                 </>}
         headerDisplay='flex'
         headerJustifyContent='center'
@@ -232,19 +234,19 @@ function Login() {
         body={show ? ( // IF SHOW IS TRUE 
             <>
                 <br/>
-                <input style={{maxWidth: '275px', margin: 'auto'}} type="input" className="form-control" id="email"
+                <input style={{maxWidth: '275px', margin: 'left'}} type="input" className="form-control" id="email"
                 placeholder="Enter email" value={email} onChange={e => setEmail(e.currentTarget.value)} />
                 <br/>
-                <input style={{maxWidth: '275px', margin: 'auto'}} type="password" className="form-control" id="password"
+                <input style={{maxWidth: '275px', margin: 'left'}} type="password" className="form-control" id="password"
                 placeholder="Enter password" value={password} onChange={e => setPassword(e.currentTarget.value)} />
                 <br/>
-                <button style={{justifyContent: 'center'}}type="submit" className="btn btn-light" onClick={login}>Login</button>
-                <br/>
+                <button style={{justifyContent: 'center'}}type="submit" className="btn btn-light mr-2" onClick={login}>Login</button>
                 
             </>
         ):(  //IF SHOW IS FALSE
             <>
-                <h5 style={{textAlign: 'center'}}>Success, {ctx.name} has logged in! </h5>
+                <h5 style={{margin:'left'}}>Success, {ctx.name} has logged in! </h5>
+                <button disabled={!isLogged} style={{justifyContent: 'center'}}type="submit" className="btn btn-light mr-2" onClick={logout}>Logout</button>
             </>
         )}   
         />        

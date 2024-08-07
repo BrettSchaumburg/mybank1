@@ -16,12 +16,40 @@ function CreateAccount() {
         return true;
     }
 
-    //function handle(){
- 
-
+    function createAccountNumber(){
+        let randomTwelveDigitNumber = "";
+        const min = 100000000000; // Minimum 12-digit number
+        const max = 999999999999; // Maximum 12-digit number
+        randomTwelveDigitNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        const stringAccount = randomTwelveDigitNumber.toString();
+        const duplicateAccount = false;
+        if (!duplicateAccount){
+        fetch(`/account/findAccount/${stringAccount}`)
+        .then(response => response.text())
+        .then(text => {
+            try { //if it finds a match it needs to 
+               if (!!text){ // if  response is not null meaning there is a match create a new number
+                createAccountNumber();
+                console.log('found a duplicate account!');
+               } 
+               console.log('did not find a duplicate account number!')
+            } catch(err) {
+                
+                console.log('error on find account');
+            }
+        });    
+        }
+        console.log("This is the random 12 digit account number:"+ randomTwelveDigitNumber);
+        return randomTwelveDigitNumber;
+    }
 
     function handleCreate(){
         console.log(name,email,password);
+        const newAccountNumber = createAccountNumber();
+        
+        
+        
+        
         if(!validate(name,      'name')) return;
         if(!validate(email,     'email')) return;
         if(!validate(password,  'password')) return;
@@ -35,7 +63,7 @@ function CreateAccount() {
             console.log('sign up success');
             
             console.log(name,email,password);
-            const url = `/account/create/${name}/${email}/${password}`;
+            const url = `/account/create/${name}/${email}/${password}/${newAccountNumber}`;
             (async () => {
                 var res  = await fetch(url);
                 var data = await res.json();    
@@ -110,11 +138,9 @@ function CreateAccount() {
                 <>
                 <h5>Success!</h5>   
                 <i> -Please create another account or go Login</i>
-                <div><button type="submit" className="btn btn-light" onClick={clearForm}>Create Another Account</button> 
-                </div>
-                
                 <div>
-                <button type="submit" className="btn btn-light" onClick={goLogin}>Login</button> 
+                    <button type="submit" className="btn btn-light mr-2" onClick={clearForm}>Create Another Account</button> 
+                    <button type="submit" className="btn btn-light mr-2" onClick={goLogin}>Login</button> 
                 </div>
                 </>
             )}        

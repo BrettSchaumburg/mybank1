@@ -168,7 +168,15 @@ function Deposit() {
 
         return (
             <Card 
-                header="Deposit"
+                header={<>
+                    <div style={{float: 'left'}}>
+                    <h5>Deposit</h5><p></p>
+                    </div>
+                    <div style={{float: 'right'}}>
+                     User: <i>{ctx.name}</i>
+                     </div>
+                    
+                    </>}
                 cardWidth='45%'
                 bgcolor="info"
                 txtcolor="white"
