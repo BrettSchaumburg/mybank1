@@ -75,7 +75,7 @@ function Login() {
         return {};
     }
 
-    function updateCurrentUser(name, email, password, loginStatus,) {
+    function updateCurrentUser(name, email, password, loginStatus,balance) {
 
 
         
@@ -84,6 +84,7 @@ function Login() {
         ctx.email = email;
         ctx.password = password;
         ctx.loginStatus = loginStatus; 
+        ctx.balance = balance;
 
     }
     
@@ -133,6 +134,7 @@ function Login() {
                     //console.log('json get name:', data.name);
                     ctx.name = data.name;
                     ctx.account = data.accountNumber;
+                    ctx.balance = data.balance;
                     setMsg();
                     //setBalance(data.balance);
  
@@ -197,7 +199,7 @@ function Login() {
         //currentUser.user = {};
         clearForm();
       
-        updateCurrentUser("", "NO USER LOGGED IN", "", false);
+        updateCurrentUser("", "NO USER LOGGED IN", "", false,0);
       ctx.name = "No user logged in!";
               //ctx.loginStatus = false;
         setIsLogged(false);
