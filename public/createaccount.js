@@ -39,8 +39,8 @@ function CreateAccount() {
             }
         });    
         }
-        console.log("This is the random 12 digit account number:"+ randomTwelveDigitNumber);
-        return randomTwelveDigitNumber;
+        console.log("This is the random 12 digit account number:"+ stringAccount);
+        return stringAccount;
     }
 
     function handleCreate(){

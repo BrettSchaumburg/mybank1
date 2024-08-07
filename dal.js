@@ -1,8 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
-
-
 let db            = null;
 require('dotenv').config();
+
 // connect to mongo
 MongoClient.connect(process.env.MONGO_URI, {useUnifiedTopology: true}, function(err, client) {
     console.log("Connected successfully to db server");
@@ -75,26 +74,6 @@ function update(email, amount){
     });    
 }
 
-// function updateActivity(userID, depositDateTime, activity ) {
-//     return new Promise((resolve, reject) => {
-//         const customer = db
-//             .collection('users')
-//             .updateOne(
-//              {"userID" : userID},
-//               {$push : {"activity" : {"datetime" : depositDateTime, "action" : activity}}})
-//             .then((result) => {
-//                 console.log("this is the result:"+result)
-//                 resolve(result)
-//             })
-//             .catch((err) => {
-//                 console.log("thhis is the error:"+err)
-//                 reject(err)
-//             });
-//     })
-
-// }
-//{ $inc:  {"activity.datetime" : depositDateTime, "activity.action" : activity}},
-//{ returnOriginal: false },
 // update - deposit/withdraw amount
 function updateActivity(email, depositTime, depositDate, action, amount, balance){
     return new Promise((resolve, reject) => {    
@@ -102,7 +81,7 @@ function updateActivity(email, depositTime, depositDate, action, amount, balance
             .collection('users')            
             .findOneAndUpdate(
                 {email: email},
-                {$push : {"activity" : {"depositTime" : depositTime, "depositDate" : depositDate, "action" : action, "amount" : amount, "balance" : balance}}},
+                {$push : {"activity" : {"Time" : depositTime, "Date" : depositDate, "Action" : action, "Amount" : amount, "CurBalance" : balance}}},
                 function (err, documents) {
                     err ? reject(err) : resolve(documents);
                 }
