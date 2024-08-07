@@ -20,14 +20,14 @@ function Login() {
    //Get Current Authentication Status  //if signin or signout
     auth.onAuthStateChanged((userCredential) => {
         if (userCredential) {
-            console.log('1');
+        //    console.log('1');
          //   setShow(false);
           if (ctx.loginStatus){
             setShow(false);
           }
         //setMsg(auth.user.email);
            setIsLogged(true); 
-           console.log("Login Page Current User: ");
+        //   console.log("Login Page Current User: ");
         //     console.log(userCredential);
         //     currentUser.user = userCredential;
         //     console.log(`Current Email: ${currentUser.user.email}`);
@@ -38,8 +38,7 @@ function Login() {
             
         } else {
             // If the user is logged out...
-            console.log('2');
-         
+               
             setShow(true);
             console.log("No User Logged In");
             //currentUser.user = {};
@@ -119,9 +118,9 @@ function Login() {
             
             //setMsg(currentUser.loginStatus);
             //ctx.email = currentUser.user.email;
-            console.log('this is the ctx.email'+ ctx.email);
+            //console.log('this is the ctx.email'+ ctx.email);
             setMsg(ctx.email);
-            console.log('this is the msg'+ msg);
+            //console.log('this is the msg'+ msg);
            
             fetch(`/account/findOne/${ctx.email}`)
             .then(response => response.text())
@@ -131,7 +130,7 @@ function Login() {
                  //    setStatus(JSON.stringify(data.value));
                  //    setShow(false);
                  //    props.setStatus("You have successfully deposited: $"+amount);
-                    console.log('json get name:', data.name);
+                    //console.log('json get name:', data.name);
                     ctx.name = data.name;
                     ctx.account = data.accountNumber;
                     setMsg();
